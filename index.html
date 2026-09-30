@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUB GYM | Transforma tu Cuerpo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Encabezado / Navegación -->
+    <header>
+        <div class="logo-container">
+            <img src="logo.png.jpg" alt="Logo Club Gym" class="logo-img">
+            <div class="logo">CLUB <span>GYM</span></div>
+        </div>
+        <nav>
+            <ul id="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#planes">Planes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#redes">Redes</a></li>
+            </ul>
+        </nav>
+        <button id="menu-btn" class="menu-btn">☰</button>
+    </header>
+
+    <!-- Sección de Inicio (Hero) -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>SUPERA TUS <span>LÍMITES</span></h1>
+            <p>Entrena con los mejores equipos, instructores expertos y alcanza tu máximo potencial hoy mismo.</p>
+            <a href="#planes" class="btn">Empieza Ahora</a>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section id="servicios" class="services">
+        <h2>Nuestros Servicios</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>Musculación</h3>
+                <p>Zona de pesas libres y máquinas de última generación para hipertrofia y fuerza.</p>
+            </div>
+            <div class="service-card">
+                <h3>CrossFit</h3>
+                <p>Entamientos de alta intensidad para mejorar tu resistencia, agilidad y potencia.</p>
+            </div>
+            <div class="service-card">
+                <h3>Clases Grupales</h3>
+                <p>Spinning, Zumba, Yoga y Pilates guiados por profesionales certificados.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Planes / Precios -->
+    <section id="planes" class="pricing">
+        <h2>Elige tu Plan</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Básico</h3>
+                <p class="price">$29<span>/mes</span></p>
+                <ul>
+                    <li>Acceso a Sala de Pesas</li>
+                    <li>Lunes a Sábado</li>
+                    <li>Casilleros Básicos</li>
+                </ul>
+                <button class="btn-plan">Unirme</button>
+            </div>
+            <div class="price-card popular">
+                <span class="badge">Más Popular</span>
+                <h3>Pro</h3>
+                <p class="price">$49<span>/mes</span></p>
+                <ul>
+                    <li>Acceso Total 24/7</li>
+                    <li>Todas las Clases Grupales</li>
+                    <li>Evaluación Física Mensual</li>
+                </ul>
+                <button class="btn-plan">Unirme</button>
+            </div>
+            <div class="price-card">
+                <h3>VIP</h3>
+                <p class="price">$79<span>/mes</span></p>
+                <ul>
+                    <li>Todo lo del Plan Pro</li>
+                    <li>Entrenador Personal Exclusivo</li>
+                    <li>Acceso a Sauna y Spa</li>
+                </ul>
+                <button class="btn-plan">Unirme</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto y Ubicación -->
+    <section id="contacto" class="contact">
+        <h2>Visítanos</h2>
+        <p>Av. Principal 123, Ciudad Fitness | Teléfono: +123 456 789</p>
+        
+        <!-- Botón de Ubicación en Google Maps -->
+        <div style="margin: 20px 0;">
+            <a href="https://maps.app.goo.gl/HbiFJGrRxjho6rGfA" target="_blank" class="btn" style="background-color: #2f3640; border: 1px solid #ff4757;">
+                📍 Ver Ubicación en Google Maps
+            </a>
+        </div>
+
+        <form id="contact-form">
+            <input type="text" placeholder="Tu Nombre" required>
+            <input type="email" placeholder="Tu Correo Electrónico" required>
+            <textarea placeholder="Tu Mensaje" rows="4" required></textarea>
+            <button type="submit" class="btn">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <!-- Nueva Sección de Redes Sociales -->
+    <section id="redes" class="social-section">
+        <h2>Síguenos en Redes Sociales</h2>
+        <p>¡Mantente al tanto de nuestras rutinas, tips y promociones exclusivas!</p>
+        <div class="social-container">
+            <!-- Instagram (Reemplaza # con tu enlace real) -->
+            <a href="https://www.instagram.com/clubgym.chincha/?hl=es" target="_blank" class="social-btn instagram">
+                📸 Instagram
+            </a>
+            <!-- Facebook (Reemplaza # con tu enlace real) -->
+            <a href="https://www.facebook.com/p/CLUB-GYM-61558558352500/" target="_blank" class="social-btn facebook">
+                📘 Facebook
+            </a>
+            <!-- WhatsApp (Reemplaza el número por el tuyo en formato internacional, ej: 51999999999) -->
+            <a href="https://wa.me/51923030220?text=Hola,%20deseo%20más%20información%20sobre%20los%20planes%20de%20CLUB%20GYM" target="_blank" class="social-btn whatsapp">
+                💬 WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 CLUB GYM. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
