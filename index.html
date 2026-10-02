@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +20,18 @@
             <ul id="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#horarios">Horarios</a></li>
+                <li><a href="#imc">Calculadora IMC</a></li>
                 <li><a href="#planes">Planes</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#redes">Redes</a></li>
             </ul>
         </nav>
-        <button id="menu-btn" class="menu-btn">☰</button>
+        <div class="header-actions">
+            <button id="theme-toggle" class="theme-btn" title="Cambiar modo">☀️</button>
+            <button id="menu-btn" class="menu-btn">☰</button>
+        </div>
     </header>
 
     <!-- Sección de Inicio (Hero) -->
@@ -52,6 +58,87 @@
             <div class="service-card">
                 <h3>Clases Grupales</h3>
                 <p>Spinning, Zumba, Yoga y Pilates guiados por profesionales certificados.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: Horarios de Clases -->
+    <section id="horarios" class="schedule-section">
+        <h2>Horarios de Clases Semanales</h2>
+        <p class="subtitle">Organiza tus entrenamientos y descubre tus clases favoritas</p>
+        <div class="table-container">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>07:00 AM</strong></td>
+                        <td>Spinning</td>
+                        <td>CrossFit</td>
+                        <td>Spinning</td>
+                        <td>CrossFit</td>
+                        <td>Spinning</td>
+                        <td>Zumba</td>
+                    </tr>
+                    <tr>
+                        <td><strong>09:00 AM</strong></td>
+                        <td>Musculación Libre</td>
+                        <td>Musculación Libre</td>
+                        <td>Musculación Libre</td>
+                        <td>Musculación Libre</td>
+                        <td>Musculación Libre</td>
+                        <td>CrossFit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>05:00 PM</strong></td>
+                        <td>Zumba</td>
+                        <td>Pilates</td>
+                        <td>Zumba</td>
+                        <td>Pilates</td>
+                        <td>Funcional</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>07:00 PM</strong></td>
+                        <td>CrossFit</td>
+                        <td>Spinning</td>
+                        <td>CrossFit</td>
+                        <td>Spinning</td>
+                        <td>CrossFit</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: Calculadora de IMC -->
+    <section id="imc" class="imc-section">
+        <h2>Calculadora de IMC</h2>
+        <p class="subtitle">Calcula tu Índice de Masa Corporal y conoce tu estado físico ideal</p>
+        <div class="imc-card">
+            <div class="imc-inputs">
+                <div class="input-group">
+                    <label for="peso">Peso (kg):</label>
+                    <input type="number" id="peso" placeholder="Ej. 70" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label for="altura">Altura (cm):</label>
+                    <input type="number" id="altura" placeholder="Ej. 175">
+                </div>
+            </div>
+            <button class="btn" onclick="calcularIMC()">Calcular IMC</button>
+            <div id="imc-resultado" class="imc-resultado">
+                <p>Ingresa tus datos para ver el resultado.</p>
             </div>
         </div>
     </section>
@@ -94,6 +181,52 @@
         </div>
     </section>
 
+    <!-- NUEVA SECCIÓN: Testimonios -->
+    <section id="testimonios" class="testimonials-section">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Excelente ambiente de entrenamiento. Las máquinas siempre están impecables y los instructores te apoyan en todo momento."</p>
+                <h4>Carlos Mendoza</h4>
+                <span>Miembro Pro</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Las clases de Zumba y Spinning son lo máximo. ¡Logré mis objetivos de peso gracias a la constancia y la guía del gym!"</p>
+                <h4>Lucía Ramírez</h4>
+                <span>Miembro VIP</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"El mejor gimnasio de Chincha sin duda alguna. Muy completo, horarios flexibles y excelente atención."</p>
+                <h4>Jorge Luis Torres</h4>
+                <span>Miembro Básico</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección del Carrusel -->
+    <section class="carousel-section">
+        <h2>Nuestras Instalaciones</h2>
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
+            
+            <div class="carousel-container" id="carouselContainer">
+                <div class="carousel-track">
+                    <div class="slide"><img src="img1.jpg" alt="Zona de Pesas"><p>Zona de Pesas</p></div>
+                    <div class="slide"><img src="img2.jpg" alt="Cardio"><p>Cardio</p></div>
+                    <div class="slide"><img src="img3.jpg" alt="Clases Grupales"><p>Clases Grupales</p></div>
+                    <div class="slide"><img src="img4.avif" alt="Spinning"><p>Spinning</p></div>
+                    <div class="slide"><img src="img5.jpg" alt="Entrenamiento Personal"><p>Entrenamiento Personal</p></div>
+                    <div class="slide"><img src="img6.jpg" alt="Recepción"><p>Recepción</p></div>
+                </div>
+            </div>
+            
+            <button class="carousel-btn next-btn" onclick="scrollCarousel(1)">&#10095;</button>
+        </div>
+    </section>
+
     <!-- Sección de Contacto y Ubicación -->
     <section id="contacto" class="contact">
         <h2>Visítanos</h2>
@@ -114,7 +247,7 @@
         </form>
     </section>
 
-    <!-- Nueva Sección de Redes Sociales -->
+    <!-- Sección de Redes Sociales -->
     <section id="redes" class="social-section">
         <h2>Síguenos en Redes Sociales</h2>
         <p>¡Mantente al tanto de nuestras rutinas, tips y promociones exclusivas!</p>
@@ -131,27 +264,11 @@
         </div>
     </section>
 
-<!-- Sección del Carrusel -->
-    <section class="carousel-section">
-        <h2>Nuestras Instalaciones</h2>
-        <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
-            
-            <div class="carousel-container" id="carouselContainer">
-                <div class="carousel-track">
-                    <div class="slide"><img src="img1.jpg" alt="Zona de Pesas"><p>Zona de Pesas</p></div>
-                    <div class="slide"><img src="img2.jpg" alt="Cardio"><p>Cardio</p></div>
-                    <div class="slide"><img src="img3.jpg" alt="Clases Grupales"><p>Clases Grupales</p></div>
-                    <div class="slide"><img src="img4.avif" alt="Spinning"><p>Spinning</p></div>
-                    <div class="slide"><img src="img5.jpg" alt="Entrenamiento Personal"><p>Entrenamiento Personal</p></div>
-                    <div class="slide"><img src="img6.jpg" alt="Recepción"><p>Recepción</p></div>
-                </div>
-            </div>
-            
-            <button class="carousel-btn next-btn" onclick="scrollCarousel(1)">&#10095;</button>
-        </div>
-    </section>
-    
+    <!-- Botón Flotante Permanente de WhatsApp -->
+    <a href="https://wa.me/51953815602?text=Hola,%20deseo%20información%20sobre%20el%20gimnasio" class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
+        💬
+    </a>
+
     <!-- Pie de página -->
     <footer>
         <p>&copy; 2026 CLUB GYM. Todos los derechos reservados.</p>
