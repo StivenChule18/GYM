@@ -21,3 +21,12 @@ contactForm.addEventListener('submit', (e) => {
     alert('¡Gracias por tu mensaje! Te responderemos a la brevedad.');
     contactForm.reset();
 });
+
+function scrollCarousel(direction) {
+    const container = document.getElementById('carouselContainer');
+    const scrollAmount = 260; // Ancho de la tarjeta más el espacio de separación
+    container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
