@@ -1,3 +1,27 @@
+/* Definición de Variables de Tema (Oscuro por defecto) */
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #ffffff;
+    --text-muted: #aaa;
+    --header-bg: rgba(18, 18, 18, 0.95);
+    --border-color: #2a2a2a;
+    --table-header: #2a2a2a;
+    --table-row-alt: #181818;
+}
+
+/* Variables para el Modo Claro */
+[data-theme="light"] {
+    --bg-color: #f4f4f4;
+    --card-bg: #ffffff;
+    --text-color: #222222;
+    --text-muted: #666;
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --border-color: #ddd;
+    --table-header: #eaeaea;
+    --table-row-alt: #f9f9f9;
+}
+
 /* Estilos Generales y Reseteo */
 * {
     margin: 0;
@@ -8,8 +32,9 @@
 }
 
 body {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Encabezado */
@@ -18,13 +43,14 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(18, 18, 18, 0.95);
+    background: var(--header-bg);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
     z-index: 1000;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(5px);
 }
 
 .logo-container {
@@ -53,13 +79,14 @@ header {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 20px;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #fff;
+    color: var(--text-color);
     font-weight: 600;
+    font-size: 14px;
     transition: color 0.3s;
 }
 
@@ -67,11 +94,31 @@ nav ul li a:hover {
     color: #ff4757;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
 .menu-btn {
     display: none;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--text-color);
     font-size: 28px;
     cursor: pointer;
 }
@@ -91,6 +138,7 @@ nav ul li a:hover {
     font-size: 48px;
     font-weight: 800;
     margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .hero-content h1 span {
@@ -111,6 +159,8 @@ nav ul li a:hover {
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
+    border: none;
+    cursor: pointer;
     transition: background 0.3s, transform 0.2s;
 }
 
@@ -127,8 +177,14 @@ section {
 
 section h2 {
     font-size: 36px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     font-weight: 800;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-size: 16px;
 }
 
 /* Servicios */
@@ -141,11 +197,11 @@ section h2 {
 }
 
 .service-card {
-    background: #1e1e1e;
+    background: var(--card-bg);
     padding: 40px 20px;
     border-radius: 10px;
     transition: transform 0.3s;
-    border: 1px solid #2a2a2a;
+    border: 1px solid var(--border-color);
 }
 
 .service-card:hover {
@@ -155,6 +211,98 @@ section h2 {
 .service-card h3 {
     margin-bottom: 15px;
     color: #ff4757;
+}
+
+/* Tabla de Horarios */
+.schedule-section {
+    background-color: var(--card-bg);
+}
+
+.table-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.schedule-table th, .schedule-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.schedule-table th {
+    background-color: var(--table-header);
+    color: #ff4757;
+    font-weight: 700;
+    text-align: center;
+}
+
+.schedule-table td {
+    text-align: center;
+    color: var(--text-color);
+}
+
+.schedule-table tr:nth-child(even) {
+    background-color: var(--table-row-alt);
+}
+
+/* Calculadora de IMC */
+.imc-section {
+    background-color: var(--bg-color);
+}
+
+.imc-card {
+    background: var(--card-bg);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.imc-inputs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    flex: 1;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    outline: none;
+}
+
+.imc-resultado {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--bg-color);
+    border-radius: 5px;
+    border-left: 4px solid #ff4757;
+    font-weight: 600;
 }
 
 /* Planes / Precios */
@@ -167,11 +315,11 @@ section h2 {
 }
 
 .price-card {
-    background: #1e1e1e;
+    background: var(--card-bg);
     padding: 40px 20px;
     border-radius: 10px;
     position: relative;
-    border: 1px solid #2a2a2a;
+    border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -187,6 +335,7 @@ section h2 {
     left: 50%;
     transform: translateX(-50%);
     background: #ff4757;
+    color: #fff;
     padding: 4px 15px;
     font-size: 12px;
     font-weight: 600;
@@ -202,7 +351,7 @@ section h2 {
 
 .price span {
     font-size: 16px;
-    color: #aaa;
+    color: var(--text-muted);
 }
 
 .price-card ul {
@@ -214,22 +363,70 @@ section h2 {
 
 .price-card ul li {
     margin: 10px 0;
-    color: #ccc;
+    color: var(--text-muted);
 }
 
 .btn-plan {
     background: transparent;
     border: 2px solid #ff4757;
-    color: #fff;
+    color: var(--text-color);
     padding: 10px;
     border-radius: 5px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 .btn-plan:hover {
     background: #ff4757;
+    color: #fff;
+}
+
+/* Testimonios */
+.testimonials-section {
+    background-color: var(--card-bg);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: var(--bg-color);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stars {
+    color: #f39c12;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.testimonial-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.testimonial-card span {
+    font-size: 12px;
+    color: #ff4757;
 }
 
 /* Contacto */
@@ -244,9 +441,9 @@ section h2 {
 .contact input, .contact textarea {
     padding: 15px;
     border-radius: 5px;
-    border: 1px solid #333;
-    background: #1e1e1e;
-    color: #fff;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
     outline: none;
 }
 
@@ -254,15 +451,15 @@ section h2 {
     border-color: #ff4757;
 }
 
-/* Estilos de la Sección de Redes Sociales */
+/* Redes Sociales */
 .social-section {
-    background: #181818;
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .social-section p {
-    color: #aaa;
+    color: var(--text-muted);
     margin-bottom: 30px;
     font-size: 16px;
 }
@@ -302,6 +499,31 @@ section h2 {
     background-color: #25d366;
 }
 
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
 /* Footer */
 footer {
     background: #0a0a0a;
@@ -315,8 +537,7 @@ footer {
 .carousel-section {
     text-align: center;
     padding: 50px 20px;
-    background-color: #111;
-    color: white;
+    background-color: var(--bg-color);
 }
 
 .carousel-section h2 {
@@ -346,13 +567,14 @@ footer {
 
 .slide {
     min-width: 220px;
-    background: #222;
+    background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     flex-shrink: 0;
     text-align: center;
     padding-bottom: 15px;
+    border: 1px solid var(--border-color);
 }
 
 .slide img {
@@ -365,10 +587,10 @@ footer {
 .slide p {
     margin-top: 12px;
     font-weight: bold;
-    color: #fff;
+    color: var(--text-color);
 }
 
-/* Botones de navegación */
+/* Botones de navegación del carrusel */
 .carousel-btn {
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
@@ -395,13 +617,13 @@ footer {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 70px;
+        top: 75px;
         left: 0;
         width: 100%;
-        background: #121212;
+        background: var(--bg-color);
         padding: 20px 0;
         text-align: center;
-        border-bottom: 1px solid #222;
+        border-bottom: 1px solid var(--border-color);
     }
 
     nav ul.active {
