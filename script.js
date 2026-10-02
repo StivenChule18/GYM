@@ -92,3 +92,20 @@ function calcularIMC() {
     resultadoDiv.style.borderLeftColor = color;
     resultadoDiv.innerHTML = `<p>${mensaje}</p>`;
 }
+
+// Acordeón Interactivo para Preguntas Frecuentes (FAQ)
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+    const questionBtn = item.querySelector('.faq-question');
+    questionBtn.addEventListener('click', () => {
+        // Cierra los demás abiertos (opcional, si deseas que solo uno esté abierto a la vez)
+        faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+                otherItem.classList.remove('active');
+            }
+        });
+        // Alterna el actual
+        item.classList.toggle('active');
+    });
+});
