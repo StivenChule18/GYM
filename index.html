@@ -50,7 +50,7 @@
         </div>
     </section>
 
-    <!-- 1. Contador de Estadísticas (Impacto visual) -->
+    <!-- Contador de Estadísticas -->
     <section id="estadisticas" class="stats-section">
         <div class="stats-grid">
             <div class="stat-item">
@@ -91,7 +91,7 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: Horarios de Clases -->
+    <!-- Horarios de Clases -->
     <section id="horarios" class="schedule-section">
         <h2>Horarios de Clases Semanales</h2>
         <p class="subtitle">Organiza tus entrenamientos y descubre tus clases favoritas</p>
@@ -150,7 +150,7 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: Calculadora de IMC -->
+    <!-- Calculadora de IMC -->
     <section id="imc" class="imc-section">
         <h2>Calculadora de IMC</h2>
         <p class="subtitle">Calcula tu Índice de Masa Corporal y conoce tu estado físico ideal</p>
@@ -165,14 +165,14 @@
                     <input type="number" id="altura" placeholder="Ej. 175">
                 </div>
             </div>
-            <button class="btn" onclick="calcularIMC()">Calcular IMC</button>
+            <button class="btn" onclick="calcularIMC()">Calcalcular IMC</button>
             <div id="imc-resultado" class="imc-resultado">
                 <p>Ingresa tus datos para ver el resultado.</p>
             </div>
         </div>
     </section>
 
-<!-- Sección de Planes / Precios -->
+    <!-- Sección de Planes / Precios -->
     <section id="planes" class="pricing">
         <h2>Elige tu Plan</h2>
         <p class="subtitle">Selecciona el entrenamiento que mejor se adapte a tus metas</p>
@@ -195,7 +195,7 @@
                 </div>
             </div>
 
-            <!-- Plan Pro (Popular) -->
+            <!-- Plan Pro -->
             <div class="price-card popular">
                 <span class="badge">Más Popular</span>
                 <div class="plan-img-container">
@@ -233,7 +233,7 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: Testimonios -->
+    <!-- Testimonios -->
     <section id="testimonios" class="testimonials-section">
         <h2>Lo que dicen nuestros clientes</h2>
         <div class="testimonials-grid">
@@ -258,7 +258,7 @@
         </div>
     </section>
 
-    <!-- 2. Sección de Preguntas Frecuentes (FAQ) con acordeón interactivo -->
+    <!-- Preguntas Frecuentes (FAQ) -->
     <section id="faq" class="faq-section">
         <h2>Preguntas Frecuentes</h2>
         <p class="subtitle">Resuelve tus dudas sobre nuestras instalaciones y servicios</p>
@@ -310,7 +310,6 @@
         <h2>Visítanos</h2>
         <p>Panamericana sur manzana w lote 12 sunampe, Chincha Alta, Ica, Peru</p>
         
-        <!-- Botón de Ubicación en Google Maps -->
         <div style="margin: 20px 0;">
             <a href="https://maps.app.goo.gl/HbiFJGrRxjho6rGfA" target="_blank" class="btn" style="background-color: #2f3640; border: 1px solid #ff4757;">
                 📍 Ver Ubicación en Google Maps
@@ -330,17 +329,32 @@
         <h2>Síguenos en Redes Sociales</h2>
         <p>¡Mantente al tanto de nuestras rutinas, tips y promociones exclusivas!</p>
         <div class="social-container">
-            <a href="https://www.instagram.com/clubgym.chincha/?hl=es" target="_blank" class="social-btn instagram">
-                📸 Instagram
-            </a>
-            <a href="https://www.facebook.com/p/CLUB-GYM-61558558352500/" target="_blank" class="social-btn facebook">
-                📘 Facebook
-            </a>
-            <a href="https://wa.me/51953815602?text=Hola,%20deseo%20más%20información%20sobre%20los%20planes%20de%20CLUB%20GYM" target="_blank" class="social-btn whatsapp">
-                💬 WhatsApp
-            </a>
+            <a href="https://www.instagram.com/clubgym.chincha/?hl=es" target="_blank" class="social-btn instagram">📸 Instagram</a>
+            <a href="https://www.facebook.com/p/CLUB-GYM-61558558352500/" target="_blank" class="social-btn facebook">📘 Facebook</a>
+            <a href="https://www.tiktok.com/@club.gym4?is_from_webapp=1&sender_device=pc" target="_blank" class="social-btn tiktok">🎵 TikTok</a>
+            <a href="https://wa.me/51953815602?text=Hola,%20deseo%20más%20información%20sobre%20los%20planes%20de%20CLUB%20GYM" target="_blank" class="social-btn whatsapp">💬 WhatsApp</a>
         </div>
     </section>
+
+    <!-- ========================================== -->
+    <!-- COMPONENTE: ASISTENTE VIRTUAL CON INTELIGENCIA ARTIFICIAL -->
+    <!-- ========================================== -->
+    <div id="ai-chat-widget">
+        <button id="ai-chat-toggle" title="Pregúntale a nuestra IA">🤖 Asistente IA</button>
+        <div id="ai-chat-box" class="ai-chat-hidden">
+            <div class="ai-chat-header">
+                <h3>Stiven IA Assistant 🤖</h3>
+                <button id="ai-chat-close">&times;</button>
+            </div>
+            <div id="ai-chat-messages">
+                <div class="ai-msg bot">¡Hola! Soy el asistente inteligente de Stiven Club Gym. ¿En qué te puedo ayudar hoy? (Planes, horarios, ubicación, etc.)</div>
+            </div>
+            <div class="ai-chat-input-area">
+                <input type="text" id="ai-chat-input" placeholder="Escribe tu consulta...">
+                <button id="ai-chat-send">Enviar</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Botón Flotante Permanente de WhatsApp -->
     <a href="https://wa.me/51953815602?text=Hola,%20deseo%20información%20sobre%20el%20gimnasio" class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
