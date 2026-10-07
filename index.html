@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLUB GYM STY | Transforma tu Cuerpo</title>
+    <title>CLUB GYM STI | Transforma tu Cuerpo</title>
     <link rel="stylesheet" href="style.css">
     <!-- Fuente de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- 3. Mini alerta o barra de aviso superior (Banner de Promoción) -->
+    <!-- Mini alerta o barra de aviso superior (Banner de Promoción) -->
     <div class="promo-banner">
         🔥 ¡Matrícula GRATIS por todo este mes! Únete hoy mismo y transforma tu vida. <a href="#planes">Ver planes</a>
     </div>
@@ -19,7 +19,7 @@
     <header>
         <div class="logo-container">
             <img src="logo.png.jpg" alt="Logo Club Gym" class="logo-img">
-            <div class="logo">STI CLUB <span>GYM</span></div>
+            <div class="logo">STIVEN CLUB <span>GYM</span></div>
         </div>
         <nav>
             <ul id="nav-links">
@@ -28,6 +28,8 @@
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#horarios">Horarios</a></li>
                 <li><a href="#imc">Calculadora IMC</a></li>
+                <li><a href="#quiz-meta">Test Meta</a></li>
+                <li><a href="#rutina-sorpresa">Rutina Día</a></li>
                 <li><a href="#planes">Planes</a></li>
                 <li><a href="#testimonios">Testimonios</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -165,10 +167,45 @@
                     <input type="number" id="altura" placeholder="Ej. 175">
                 </div>
             </div>
-            <button class="btn" onclick="calcularIMC()">Calcalcular IMC</button>
+            <button class="btn" onclick="calcularIMC()">Calcular IMC</button>
             <div id="imc-resultado" class="imc-resultado">
                 <p>Ingresa tus datos para ver el resultado.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: Test Interactivo de Objetivos -->
+    <section id="quiz-meta" class="quiz-section">
+        <h2>¿Qué plan va contigo?</h2>
+        <p class="subtitle">Responde brevemente y descubre tu recomendación ideal</p>
+        <div class="quiz-card">
+            <div id="quiz-question-container">
+                <p id="quiz-question" style="font-weight: 600; font-size: 18px; margin-bottom: 20px;">¿Cuál es tu objetivo principal en el gimnasio?</p>
+                <div class="quiz-options">
+                    <button class="btn-quiz" onclick="siguientePasoQuiz(1)">Ganar fuerza y masa muscular</button>
+                    <button class="btn-quiz" onclick="siguientePasoQuiz(2)">Perder grasa y mejorar resistencia</button>
+                    <button class="btn-quiz" onclick="siguientePasoQuiz(3)">Acceso total, sauna y atención personalizada</button>
+                </div>
+            </div>
+            <div id="quiz-result-container" style="display: none;">
+                <h3 id="quiz-result-title" style="color: #ff4757; margin-bottom: 10px;">¡Tenemos tu plan perfecto!</h3>
+                <p id="quiz-result-text" style="margin-bottom: 20px; color: var(--text-muted);"></p>
+                <a href="#planes" class="btn">Ver Planes</a>
+                <br><br>
+                <button class="btn-quiz" style="background: transparent; border: 1px solid var(--border-color); color: var(--text-color);" onclick="reiniciarQuiz()">Volver a intentar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: Generador de Rutina Sorpresa del Día -->
+    <section id="rutina-sorpresa" class="routine-section">
+        <h2>Rutina Sorpresa del Día ⚡</h2>
+        <p class="subtitle">¿Sin inspiración hoy? Genera una combinación rápida de entrenamiento</p>
+        <div class="routine-card">
+            <div id="routine-output" style="font-size: 16px; margin-bottom: 20px; font-weight: 600; min-height: 50px; display: flex; align-items: center; justify-content: center;">
+                Haz clic en el botón para obtener tu rutina express.
+            </div>
+            <button class="btn" onclick="generarRutinaSorpresa()">Generar Rutina</button>
         </div>
     </section>
 
@@ -336,9 +373,7 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
     <!-- COMPONENTE: ASISTENTE VIRTUAL CON INTELIGENCIA ARTIFICIAL -->
-    <!-- ========================================== -->
     <div id="ai-chat-widget">
         <button id="ai-chat-toggle" title="Pregúntale a nuestra IA">🤖 Asistente IA</button>
         <div id="ai-chat-box" class="ai-chat-hidden">
