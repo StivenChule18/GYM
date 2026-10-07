@@ -804,3 +804,135 @@ footer {
         text-align: center;
     }
 }
+
+/* ========================================== */
+/* ESTILOS DEL WIDGET DE ASISTENTE IA        */
+/* ========================================== */
+#ai-chat-widget {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 1000;
+}
+
+#ai-chat-toggle {
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s;
+}
+
+#ai-chat-toggle:hover {
+    transform: scale(1.05);
+}
+
+#ai-chat-box {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    width: 320px;
+    height: 420px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+#ai-chat-box.ai-chat-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.ai-chat-header {
+    background: #ff4757;
+    color: white;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-chat-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#ai-chat-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#ai-chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.ai-msg {
+    padding: 10px 12px;
+    border-radius: 8px;
+    max-width: 80%;
+    line-height: 1.4;
+}
+
+.ai-msg.bot {
+    background: var(--border-color);
+    color: var(--text-color);
+    align-self: flex-start;
+}
+
+.ai-msg.user {
+    background: #ff4757;
+    color: white;
+    align-self: flex-end;
+}
+
+.ai-chat-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-color);
+}
+
+#ai-chat-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-radius: 5px;
+    outline: none;
+    font-size: 13px;
+}
+
+#ai-chat-send {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
