@@ -109,3 +109,67 @@ faqItems.forEach(item => {
         item.classList.toggle('active');
     });
 });
+
+// --- LÓGICA DEL ASISTENTE VIRTUAL IA ---
+const chatToggle = document.getElementById('ai-chat-toggle');
+const chatBox = document.getElementById('ai-chat-box');
+const chatClose = document.getElementById('ai-chat-close');
+const chatSend = document.getElementById('ai-chat-send');
+const chatInput = document.getElementById('ai-chat-input');
+const chatMessages = document.getElementById('ai-chat-messages');
+
+if (chatToggle && chatBox) {
+    chatToggle.addEventListener('click', () => {
+        chatBox.classList.toggle('ai-chat-hidden');
+    });
+
+    chatClose.addEventListener('click', () => {
+        chatBox.classList.add('ai-chat-hidden');
+    });
+
+    chatSend.addEventListener('click', handleUserMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleUserMessage();
+    });
+}
+
+function handleUserMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    // Mostrar mensaje del usuario
+    appendMessage(text, 'user');
+    chatInput.value = '';
+
+    // Simular respuesta inteligente de la IA basada en palabras clave
+    setTimeout(() => {
+        const reply = generateAIReply(text);
+        appendMessage(reply, 'bot');
+    }, 600);
+}
+
+function appendMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('ai-msg', sender);
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function generateAIReply(query) {
+    const q = query.toLowerCase();
+
+    if (q.includes('precio') || q.includes('plan') || q.includes('costo') || q.includes('cuanto') || q.includes('cuánto')) {
+        return "Tenemos 3 planes principales: Básico ($29/mes), Pro ($49/mes) y VIP ($79/mes). ¡Además tenemos matrícula GRATIS todo el mes!";
+    } else if (q.includes('horario') || q.includes('abren') || q.includes('hora')) {
+        return "Atendemos de Lunes a Sábado. Las clases de Spinning, Zumba y CrossFit varían entre las 07:00 AM y las 07:00 PM. Revisa nuestra sección de 'Horarios' para más detalles.";
+    } else if (q.includes('ubicacion') || q.includes('ubicación') || q.includes('direccion') || q.includes('dirección') || q.includes('donde') || q.includes('dónde')) {
+        return "Estamos ubicados en la Panamericana Sur manzana W lote 12, Sunampe, Chincha Alta, Ica, Perú.";
+    } else if (q.includes('clase') || q.includes('zumba') || q.includes('spinning') || q.includes('crossfit')) {
+        return "Ofrecemos clases grupales de Spinning, Zumba, Pilates, CrossFit y entrenamiento funcional con instructores certificados.";
+    } else if (q.includes('hola') || q.includes('buenos dias') || q.includes('buenas')) {
+        return "¡Hola! ¿Te gustaría saber más sobre nuestros planes, horarios o ubicación?";
+    } else {
+        return "¡Excelente pregunta! Para darte una atención más detallada o inscribirte, puedes escribirnos directamente por el botón de WhatsApp o llamarnos al +51 953 815 602.";
+    }
+}
