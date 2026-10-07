@@ -1,116 +1,150 @@
-// Menú Hamburguesa para Móviles
+// --- 1. MODO OSCURO / CLARO CON MEMORIA (LOCALSTORAGE) ---
+const themeToggle = document.getElementById('theme-toggle');
+const htmlElement = document.documentElement;
+
+// Cargar preferencia guardada previamente
+const savedTheme = localStorage.getItem('gym_theme');
+if (savedTheme) {
+    htmlElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('gym_theme', newTheme);
+        themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+    });
+}
+
+// --- 2. MENÚ MÓVIL RESPONSIVO ---
 const menuBtn = document.getElementById('menu-btn');
 const navLinks = document.getElementById('nav-links');
 
-menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-// Selector de Modo Oscuro / Claro
-const themeToggleBtn = document.getElementById('theme-toggle');
-const htmlElement = document.documentElement;
-
-themeToggleBtn.addEventListener('click', () => {
-    const currentTheme = htmlElement.getAttribute('data-theme');
-    if (currentTheme === 'dark') {
-        htmlElement.setAttribute('data-theme', 'light');
-        themeToggleBtn.innerText = '🌙';
-    } else {
-        htmlElement.setAttribute('data-theme', 'dark');
-        themeToggleBtn.innerText = '☀️';
-    }
-});
-
-// Alertas en Botones de Planes
-const planButtons = document.querySelectorAll('.btn-plan');
-
-planButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const planName = e.target.parentElement.querySelector('h3').innerText;
-        alert(`¡Excelente elección! Has seleccionado el plan ${planName}. Nos pondremos en contacto contigo pronto.`);
+if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
     });
-});
 
-// Envío del Formulario de Contacto
-const contactForm = document.getElementById('contact-form');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('¡Gracias por tu mensaje! Te responderemos a la brevedad.');
-    contactForm.reset();
-});
-
-// Carrusel de Imágenes Dinámico
-function scrollCarousel(direction) {
-    const container = document.getElementById('carouselContainer');
-    const slide = container.querySelector('.slide');
-    
-    if (slide) {
-        const slideWidth = slide.offsetWidth + 20; // Ancho de tarjeta + gap de 20px
-        container.scrollBy({
-            left: direction * slideWidth,
-            behavior: 'smooth'
+    // Cerrar menú al hacer clic en un enlace en móviles
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
         });
-    }
+    });
 }
 
-// Calculadora de IMC (Índice de Masa Corporal)
+// --- 3. CALCULADORA DE IMC ---
 function calcularIMC() {
     const pesoInput = document.getElementById('peso').value;
     const alturaInput = document.getElementById('altura').value;
     const resultadoDiv = document.getElementById('imc-resultado');
 
-    const peso = parseFloat(pesoInput);
-    const alturaCm = parseFloat(alturaInput);
-
-    if (!peso || !alturaCm || peso <= 0 || alturaCm <= 0) {
-        resultadoDiv.innerHTML = '<p style="color: #ff4757;">Por favor, ingresa un peso y una altura válidos.</p>';
+    if (!pesoInput || !alturaInput) {
+        resultadoDiv.innerHTML = `<p style="color: #ff4757;">Por favor, ingresa tu peso y altura.</p>`;
         return;
     }
 
-    // Convertir altura de centímetros a metros
-    const alturaM = alturaCm / 100;
-    const imc = (peso / (alturaM * alturaM)).toFixed(1);
+    const peso = parseFloat(pesoInput);
+    const alturaCm = parseFloat(alturaInput);
+    const alturaM = alturaCm > 3 ? alturaCm / 100 : alturaCm; // Soporta cm o metros
 
-    let mensaje = '';
-    let color = '';
+    const imc = (peso / (alturaM * alturaM)).toFixed(1);
+    let clasificacion = "";
+    let color = "#ff4757";
 
     if (imc < 18.5) {
-        mensaje = `Tu IMC es **${imc}**: Estás en Bajo Peso. ¡Te ayudamos a ganar masa muscular!`;
-        color = '#3498db';
+        clasificacion = "Bajo peso";
+        color = "#f39c12";
     } else if (imc >= 18.5 && imc < 25) {
-        mensaje = `Tu IMC es **${imc}**: Estás en un Peso Normal. ¡Excelente estado físico!`;
-        color = '#2ecc71';
+        clasificacion = "Peso normal (Saludable)";
+        color = "#2ecc71";
     } else if (imc >= 25 && imc < 30) {
-        mensaje = `Tu IMC es **${imc}**: Tienes Sobrepeso. ¡Nuestras rutinas de cardio te servirán muchísimo!`;
-        color = '#f1c40f';
+        clasificacion = "Sobrepeso";
+        color = "#e67e22";
     } else {
-        mensaje = `Tu IMC es **${imc}**: Estás en Obesidad. ¡Tenemos un plan personalizado para transformar tu salud!`;
-        color = '#e74c3c';
+        clasificacion = "Obesidad";
+        color = "#ff4757";
     }
 
-    resultadoDiv.style.borderLeftColor = color;
-    resultadoDiv.innerHTML = `<p>${mensaje}</p>`;
+    resultadoDiv.innerHTML = `
+        <p>Tu IMC es: <strong style="color: ${color};">${imc}</strong></p>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 5px;">Clasificación: ${clasificacion}</p>
+    `;
 }
 
-// Acordeón Interactivo para Preguntas Frecuentes (FAQ)
-const faqItems = document.querySelectorAll('.faq-item');
+// --- 4. TEST INTERACTIVO DE OBJETIVOS ---
+function siguientePasoQuiz(opcion) {
+    const questionContainer = document.getElementById('quiz-question-container');
+    const resultContainer = document.getElementById('quiz-result-container');
+    const resultText = document.getElementById('quiz-result-text');
 
-faqItems.forEach(item => {
-    const questionBtn = item.querySelector('.faq-question');
-    questionBtn.addEventListener('click', () => {
-        // Cierra los demás abiertos (opcional, si deseas que solo uno esté abierto a la vez)
-        faqItems.forEach(otherItem => {
-            if (otherItem !== item) {
-                otherItem.classList.remove('active');
-            }
+    questionContainer.style.display = 'none';
+    resultContainer.style.display = 'block';
+
+    if (opcion === 1) {
+        resultText.textContent = "Te recomendamos nuestro PLAN BÁSICO o la zona de Musculación Libre con pesas, ideal para hipertrofia y desarrollo de fuerza.";
+    } else if (opcion === 2) {
+        resultText.textContent = "Te recomendamos nuestro PLAN PRO, que incluye acceso total a clases de CrossFit, Spinning y rutinas de alta intensidad para quemar grasa.";
+    } else if (opcion === 3) {
+        resultText.textContent = "¡El PLAN VIP es para ti! Disfruta de entrenador personal exclusivo, acceso ilimitado, clases grupales y zona de spa.";
+    }
+}
+
+function reiniciarQuiz() {
+    document.getElementById('quiz-question-container').style.display = 'block';
+    document.getElementById('quiz-result-container').style.display = 'none';
+}
+
+// --- 5. GENERADOR DE RUTINA SORPRESA ---
+function generarRutinaSorpresa() {
+    const ejercicios = [
+        "🔥 4 series de 12 repeticiones de Sentadillas libres + 30 segundos de plancha abdominal.",
+        "⚡ 3 series de 15 flexiones de pecho + 20 desplantes por pierna.",
+        "💪 4 series de 10 dominadas o jalones en polea + 15 abdominales crunch.",
+        "🏃‍♂️ 15 minutos de alta intensidad (Burpees y saltos a la cuerda) + estiramiento.",
+        "🔥 Circuito express: 3 rondas de 10 press de hombros y 15 sentadillas con salto."
+    ];
+
+    const randomRutina = ejercicios[Math.floor(Math.random() * ejercicios.length)];
+    const routineOutput = document.getElementById('routine-output');
+    
+    routineOutput.style.opacity = 0;
+    setTimeout(() => {
+        routineOutput.textContent = randomRutina;
+        routineOutput.style.opacity = 1;
+        routineOutput.style.transition = "opacity 0.4s ease";
+    }, 200);
+}
+
+// --- 6. CARRUSEL DE INSTALACIONES ---
+function scrollCarousel(direction) {
+    const container = document.getElementById('carouselContainer');
+    const scrollAmount = 260; // Ancho aproximado de la tarjeta + gap
+    container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
+
+// --- 7. ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ) ---
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        
+        // Cerrar los demás abiertos (opcional)
+        document.querySelectorAll('.faq-item').forEach(faq => {
+            if (faq !== item) faq.classList.remove('active');
         });
-        // Alterna el actual
+
         item.classList.toggle('active');
     });
 });
 
-// --- LÓGICA DEL ASISTENTE VIRTUAL IA ---
+// --- 8. LÓGICA DEL ASISTENTE VIRTUAL IA ---
 const chatToggle = document.getElementById('ai-chat-toggle');
 const chatBox = document.getElementById('ai-chat-box');
 const chatClose = document.getElementById('ai-chat-close');
@@ -137,11 +171,9 @@ function handleUserMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
 
-    // Mostrar mensaje del usuario
     appendMessage(text, 'user');
     chatInput.value = '';
 
-    // Simular respuesta inteligente de la IA basada en palabras clave
     setTimeout(() => {
         const reply = generateAIReply(text);
         appendMessage(reply, 'bot');
@@ -160,7 +192,7 @@ function generateAIReply(query) {
     const q = query.toLowerCase();
 
     if (q.includes('precio') || q.includes('plan') || q.includes('costo') || q.includes('cuanto') || q.includes('cuánto')) {
-        return "Tenemos 3 planes principales: Básico ($29/mes), Pro ($49/mes) y VIP ($79/mes). ¡Además tenemos matrícula GRATIS todo el mes!";
+        return "Tenemos 3 planes principales: Básico ($29/mes), Pro ($49/mes) and VIP ($79/mes). ¡Además tenemos matrícula GRATIS todo el mes!";
     } else if (q.includes('horario') || q.includes('abren') || q.includes('hora')) {
         return "Atendemos de Lunes a Sábado. Las clases de Spinning, Zumba y CrossFit varían entre las 07:00 AM y las 07:00 PM. Revisa nuestra sección de 'Horarios' para más detalles.";
     } else if (q.includes('ubicacion') || q.includes('ubicación') || q.includes('direccion') || q.includes('dirección') || q.includes('donde') || q.includes('dónde')) {
